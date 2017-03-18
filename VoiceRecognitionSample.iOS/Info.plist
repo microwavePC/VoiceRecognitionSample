@@ -43,8 +43,8 @@
 	<key>CFBundleName</key>
 	<string>VoiceRecognitionSample</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>マイクの使用許可をユーザーに求めるダイアログに、このメッセージが表示される。</string>
+	<string>このサンプルアプリは音声認識のためにマイクを使用します。</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>音声認識の許可をユーザーに求めるダイアログに、このメッセージが表示される。</string>
+	<string>このサンプルアプリは動作するために音声認識の許可が必要です。</string>
 </dict>
 </plist>
