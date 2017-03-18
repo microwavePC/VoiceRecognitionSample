@@ -14,6 +14,7 @@ Prism for Xamarin.Forms（Prism.Forms）で作成した、音声認識のサン�
 |iOS|Android|
 |---|---|
 |![iOS](Screenshot/iOS/initial.png)|![Android](Screenshot/Android/initial.png)|
+
 開始ボタンを押下した後に音声を吹き込むと、その音声の認識結果が画面上に表示されます。
 
 #### 音声認識実行後
@@ -26,5 +27,5 @@ Prism for Xamarin.Forms（Prism.Forms）で作成した、音声認識のサン�
 
 ## 注意・免責
 - どちらのプラットフォームでも、音声認識を使用する際はインターネットへの接続が必須です。
-- [iOSの場合、端末ごと・アプリごとに音声認識処理の使用回数等に制限があります。](http://qiita.com/nerd0geek1/items/af9f0555c3f6c8d878eb)
+- [iOSの場合、端末ごと・アプリごとの音声認識処理の使用回数等の制限があります。](http://qiita.com/nerd0geek1/items/af9f0555c3f6c8d878eb)
 - 本アプリの利用は自己責任でお願いします。
