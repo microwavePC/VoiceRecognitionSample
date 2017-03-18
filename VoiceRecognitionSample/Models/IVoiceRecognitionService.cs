@@ -2,18 +2,32 @@
 
 namespace VoiceRecognitionSample.Models
 {
-	/// 音声認識用のdependency service。
+	/// <summary>
+	/// 音声認識用サービス
 	/// プロパティの変更をViewModelで捕まえるため、INotifyPropertyChangedを継承している。
+	/// </summary>
 	public interface IVoiceRecognitionService : INotifyPropertyChanged
 	{
-		// 音声認識が実行中かどうか（実行中の間のみtrueを返す）
+		/// <summary>
+		/// 音声認識が実行中かどうか
+		/// </summary>
+		/// <value><c>true</c>実行中<c>false</c>停止中</value>
 		bool IsRecognizing { get; }
 
-		// 音声認識の結果テキスト（iOSの場合、認識結果をリアルタイムで取得できる）
+		/// <summary>
+		/// 音声認識の結果テキスト（iOSの場合、認識結果をリアルタイムで取得できる）
+		/// </summary>
+		/// <value>音声認識の結果テキスト</value>
 		string RecognizedText { get; }
 
-		// 音声認識の開始と停止
+		/// <summary>
+		/// 音声認識の開始処理
+		/// </summary>
 		void StartRecognizing();
+
+		/// <summary>
+		/// 音声認識の停止処理
+		/// </summary>
 		void StopRecognizing();
 	}
 }

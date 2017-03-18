@@ -5,18 +5,23 @@ using Android.Preferences;
 using Android.Speech;
 using Prism.Mvvm;
 using VoiceRecognitionSample.Droid;
-using VoiceRecognitionSample.Models;
+using VoiceRecognitionSample.Models.Droid;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(VoiceRecognitionService))]
-namespace VoiceRecognitionSample.Droid
+namespace VoiceRecognitionSample.Models.Droid
 {
-	// プロパティをバインドに利用できるようにするため、BindableBaseを継承する。
+	/// <summary>
+	/// 音声認識用サービス
+	/// プロパティの変更をバインドで捉えられるようにするため、BindableBaseを継承する。
+	/// </summary>
 	public class VoiceRecognitionService : BindableBase, IVoiceRecognitionService
 	{
 		#region Properties
 
-		// 音声認識の実行状況（実行中の間のみtrueを返す）
+		/// <summary>
+		/// 音声認識の実行状況（実行中の間のみtrueを返す）
+		/// </summary>
 		private bool _isRecognizing;
 		public bool IsRecognizing
 		{
@@ -24,7 +29,9 @@ namespace VoiceRecognitionSample.Droid
 			set { SetProperty(ref _isRecognizing, value); }
 		}
 
-		// 音声認識の結果テキスト
+		/// <summary>
+		/// 音声認識の結果テキスト
+		/// </summary>
 		private string _recognizedText;
 		public string RecognizedText
 		{
@@ -42,7 +49,7 @@ namespace VoiceRecognitionSample.Droid
 
 		#region Constant, MainActivity
 
-		// 定数・MainActivity
+		/// 定数・MainActivity
 		private readonly int REQUEST_CODE_VOICE = 10;       // 音声認識のリクエストコード
 		private readonly int INTERVAL_1500_MILLISEC = 1500; // 1.5秒（ミリ秒単位）
 		private MainActivity mainActivity;                  // MainActivity
@@ -51,7 +58,9 @@ namespace VoiceRecognitionSample.Droid
 
 		#region Constructor
 
-		// コンストラクタ
+		/// <summary>
+		/// コンストラクタ
+		/// </summary>
 		public VoiceRecognitionService()
 		{
 			// 音声認識のアクティビティで取得した結果をハンドルする処理をMainActivityに付ける。
@@ -63,7 +72,11 @@ namespace VoiceRecognitionSample.Droid
 
 		#region Handler
 
-		// 音声認識のアクティビティで取得した結果をハンドルする処理の本体
+		/// <summary>
+		/// 音声認識のアクティビティで取得した結果をハンドルする処理の本体
+		/// </summary>
+		/// <param name="sender">Sender</param>
+		/// <param name="args">Arguments</param>
 		private void HandleActivityResult(object sender, PreferenceManager.ActivityResultEventArgs args)
 		{
 			if (args.RequestCode == REQUEST_CODE_VOICE)
@@ -85,7 +98,9 @@ namespace VoiceRecognitionSample.Droid
 
 		#region Public Methods
 
-		// 音声認識の開始処理
+		/// <summary>
+		/// 音声認識の開始処理
+		/// </summary>
 		public void StartRecognizing()
 		{
 			RecognizedText = string.Empty;
@@ -98,7 +113,7 @@ namespace VoiceRecognitionSample.Droid
 
 				// 諸々のプロパティを設定する。
 				voiceIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
-				voiceIntent.PutExtra(RecognizerIntent.ExtraPrompt, "音声認識ダイアログにこの文字列が表示される。");
+				voiceIntent.PutExtra(RecognizerIntent.ExtraPrompt, "聞き取った音声を画面上に表示します。");
 				voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, INTERVAL_1500_MILLISEC);
 				voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, INTERVAL_1500_MILLISEC);
 				voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, INTERVAL_1500_MILLISEC);
@@ -116,7 +131,9 @@ namespace VoiceRecognitionSample.Droid
 			}
 		}
 
-		// 音声認識の停止処理
+		/// <summary>
+		/// 音声認識の停止処理
+		/// </summary>
 		public void StopRecognizing()
 		{
 			// Androidでは実装は不要。

@@ -9,12 +9,17 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(VoiceRecognitionService))]
 namespace VoiceRecognitionSample.Models.iOS
 {
-	// プロパティをバインドに利用できるようにするため、BindableBaseを継承する。
+	/// <summary>
+	/// 音声認識用サービス
+	/// プロパティの変更をバインドで捉えられるようにするため、BindableBaseを継承する。
+	/// </summary>
 	public class VoiceRecognitionService : BindableBase, IVoiceRecognitionService
 	{
 		#region Properties
 
-		// 音声認識の実行状況（実行中の間のみtrueを返す）
+		/// <summary>
+		/// 音声認識の実行状況（実行中の間のみtrueを返す）
+		/// </summary>
 		private bool _isRecognizing;
 		public bool IsRecognizing
 		{
@@ -22,7 +27,9 @@ namespace VoiceRecognitionSample.Models.iOS
 			set { SetProperty(ref _isRecognizing, value); }
 		}
 
-		// 音声認識の結果テキスト
+		/// <summary>
+		/// 音声認識の結果テキスト
+		/// </summary>
 		private string _recognizedText;
 		public string RecognizedText
 		{
@@ -40,7 +47,7 @@ namespace VoiceRecognitionSample.Models.iOS
 
 		#region Variables
 
-		// 音声認識に必要な諸々のクラスのインスタンス。
+		/// 音声認識に必要な諸々のクラスのインスタンス
 		private AVAudioEngine audioEngine;
 		private SFSpeechRecognizer speechRecognizer;
 		private SFSpeechAudioBufferRecognitionRequest recognitionRequest;
@@ -50,7 +57,9 @@ namespace VoiceRecognitionSample.Models.iOS
 
 		#region Public Methods
 
-		// 音声認識の開始処理
+		/// <summary>
+		/// 音声認識の開始処理
+		/// </summary>
 		public void StartRecognizing()
 		{
 			RecognizedText = string.Empty;
@@ -78,7 +87,9 @@ namespace VoiceRecognitionSample.Models.iOS
 			);
 		}
 
-		// 音声認識の停止処理
+		/// <summary>
+		/// 音声認識の停止処理
+		/// </summary>
 		public void StopRecognizing()
 		{
 			try
@@ -98,7 +109,9 @@ namespace VoiceRecognitionSample.Models.iOS
 
 		#region Private Methods
 
-		// 音声認識の本処理
+		/// <summary>
+		/// 音声認識の本処理
+		/// </summary>
 		private void startRecognitionSession()
 		{
 			// 音声認識のパラメータ設定と認識開始。ここのパラメータはおまじない。

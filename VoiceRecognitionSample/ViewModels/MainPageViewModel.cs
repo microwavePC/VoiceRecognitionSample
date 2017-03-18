@@ -1,20 +1,22 @@
-﻿using Prism.Commands;
+﻿using System.ComponentModel;
+using System.Windows.Input;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Linq;
 using VoiceRecognitionSample.Models;
-using System.Windows.Input;
 
 namespace VoiceRecognitionSample.ViewModels
 {
+	/// <summary>
+	/// MainPage.xamlに対応するViewModel
+	/// </summary>
 	public class MainPageViewModel : BindableBase, INavigationAware
 	{
 		#region Constants
 
-		// 音声認識の開始・停止ボタンのテキスト
+		/// <summary>
+		/// 音声認識の開始・停止ボタンのテキスト
+		/// </summary>
 		private const string BUTTON_TEXT_START = "開始";
 		private const string BUTTON_TEXT_STOP = "停止";
 
@@ -22,7 +24,9 @@ namespace VoiceRecognitionSample.ViewModels
 
 		#region Properties, Variables
 
-		// 音声認識の結果テキスト
+		/// <summary>
+		/// 音声認識の結果テキスト
+		/// </summary>
 		private string _recognizedText = string.Empty;
 		public string RecognizedText
 		{
@@ -30,7 +34,9 @@ namespace VoiceRecognitionSample.ViewModels
 			protected set { SetProperty(ref _recognizedText, value); }
 		}
 
-		// 音声認識の開始・停止ボタンの表記
+		/// <summary>
+		/// 音声認識の開始・停止ボタンの表記
+		/// </summary>
 		private string _voiceRecognitionButtonText = BUTTON_TEXT_START;
 		public string VoiceRecognitionButtonText
 		{
@@ -38,7 +44,9 @@ namespace VoiceRecognitionSample.ViewModels
 			protected set { SetProperty(ref _voiceRecognitionButtonText, value); }
 		}
 
-		// 音声認識を実行中かどうか（trueなら実行中）
+		/// <summary>
+		/// 音声認識を実行中かどうか（trueなら実行中）
+		/// </summary>
 		private bool _isRecognizing;
 		public bool IsRecognizing
 		{
@@ -52,17 +60,23 @@ namespace VoiceRecognitionSample.ViewModels
 			}
 		}
 
-		// 音声認識サービス
+		/// <summary>
+		/// 音声認識サービス
+		/// </summary>
 		private readonly IVoiceRecognitionService _voiceRecognitionService;
 
-		// 音声認識サービスの処理の呼び出し用コマンド
+		/// <summary>
+		/// 音声認識サービスの処理の呼び出し用コマンド
+		/// </summary>
 		public ICommand VoiceRecognitionCommand { get; }
 
 		#endregion
 
 		#region Constructor
 
-		// コンストラクタ
+		/// <summary>
+		/// コンストラクタ
+		/// </summary>
 		public MainPageViewModel(IVoiceRecognitionService voiceRecognitionService)
 		{
 			_voiceRecognitionService = voiceRecognitionService;
@@ -76,7 +90,7 @@ namespace VoiceRecognitionSample.ViewModels
 
 		#endregion
 
-		#region NavigationAware Event
+		#region Event of NavigationAware
 
 		public void OnNavigatedFrom(NavigationParameters parameters)
 		{
@@ -92,7 +106,11 @@ namespace VoiceRecognitionSample.ViewModels
 
 		#region Private Methods
 
-		// 音声認識サービスのプロパティ変更時にトリガーされるイベントの実処理
+		/// <summary>
+		/// 音声認識サービスのプロパティ変更時にトリガーされるイベントの実処理
+		/// </summary>
+		/// <param name="sender">Sender</param>
+		/// <param name="args">Arguments</param>
 		private void voiceRecognitionServicePropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			if (args.PropertyName == "RecognizedText")
@@ -107,7 +125,9 @@ namespace VoiceRecognitionSample.ViewModels
 			}
 		}
 
-		// 音声認識サービス呼び出し用ボタンのコマンドの実処理
+		/// <summary>
+		/// 音声認識サービス呼び出し用ボタンのコマンドの実処理
+		/// </summary>
 		private void executeVoiceRecognition()
 		{
 			if (IsRecognizing)
