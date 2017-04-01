@@ -102,6 +102,11 @@ namespace VoiceRecognitionSample.ViewModels
 
 		}
 
+		public void OnNavigatingTo(NavigationParameters parameters)
+		{
+			
+		}
+
 		#endregion
 
 		#region Private Methods

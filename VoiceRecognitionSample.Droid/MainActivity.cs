@@ -1,6 +1,5 @@
 ﻿using System;
 using Android.App;
-using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Microsoft.Practices.Unity;
@@ -24,14 +23,6 @@ namespace VoiceRecognitionSample.Droid
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 
 			LoadApplication(new App(new AndroidInitializer()));
-		}
-
-		// ↓追加
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-		{
-			base.OnActivityResult(requestCode, resultCode, data);
-			var resultEventArgs = new PreferenceManager.ActivityResultEventArgs(true, requestCode, resultCode, data);
-			ActivityResult(this, resultEventArgs);
 		}
 	}
 
